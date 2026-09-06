@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://紧固件.cn/sitemap.xml
