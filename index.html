@@ -1,504 +1,269 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>3D卷尺面板生成器｜完整版(Logo+字号+颜色+批量)</title>
-<style>
-*{
-  box-sizing:border-box;
-  font-family:system-ui, -apple-system, "Microsoft YaHei", sans-serif;
-}
-body{
-  margin:0;
-  padding:24px;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(255,255,255,.8), transparent 20%),
-    linear-gradient(135deg, #eef2f5 0%, #dfe6ed 100%);
-  min-height:100vh;
-}
-.app{
-  max-width:1350px;
-  margin:0 auto;
-  background:#fff;
-  border-radius:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  padding:30px;
-}
-h1{
-  text-align:center;
-  margin-bottom:30px;
-  font-size:22px;
-  color:#222;
-}
-.grid{
-  display:grid;
-  grid-template-columns:460px 1fr;
-  gap:30px;
-  align-items:start;
-}
-.card{
-  background:#f7f9fc;
-  border-radius:14px;
-  padding:20px;
-  margin-bottom:16px;
-}
-.card h3{
-  margin-top:0;
-  margin-bottom:16px;
-  font-size:18px;
-  color:#333;
-}
-.form-row{
-  margin-bottom:14px;
-}
-.form-row label{
-  display:block;
-  margin-bottom:6px;
-  color:#555;
-  font-size:14px;
-}
-.form-row .row-flex{
-  display:flex;
-  gap:8px;
-}
-.form-row .row-flex input:first-child{
-  flex:1;
-}
-.form-row .row-flex input:last-child{
-  width:70px;
-}
-.form-row input, .form-row select{
-  width:100%;
-  padding:10px 12px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-size:15px;
-  background:#fff;
-}
-.btn{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
-  margin-top:10px;
-  transition:.2s;
-}
-.btn-primary{
-  background:#222;
-  color:#fff;
-}
-.btn-primary:hover{
-  background:#000;
-}
-.btn-blue{
-  background:#1677ff;
-  color:#fff;
-}
-.btn-blue:hover{
-  background:#0f5fcc;
-}
-.btn-green{
-  background:#27ae60;
-  color:#fff;
-}
-.btn-green:hover{
-  background:#1f8b4c;
-}
-.preview-wrap{
-  background:linear-gradient(180deg, #e0e5ec 0%, #cfd6dd 100%);
-  border-radius:14px;
-  padding:30px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:560px;
-  position:relative;
-  overflow:hidden;
-}
-.preview-title{
-  position:absolute;
-  top:10px;
-  left:15px;
-  font-size:13px;
-  color:#666;
-}
-canvas{
-  width:440px;
-  height:480px;
-  border-radius:12px;
-  background:transparent;
-}
-.tip{
-  margin-top:12px;
-  font-size:13px;
-  color:#666;
-  line-height:1.5;
-}
-.logo-preview{
-  margin-top:8px;
-  width:100px;height:60px;
-  border:1px dashed #aaa;
-  border-radius:6px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;color:#777;
-  overflow:hidden;
-}
-.logo-preview img{max-width:95%;max-height:95%;object-fit:contain;}
-textarea{
-  width:100%;
-  min-height:100px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  padding:10px;
-  font-size:14px;
-}
-@media(max-width:960px){
-  .grid{grid-template-columns:1fr;}
-  canvas{width:100%;max-width:440px;height:auto;}
-}
-</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>紧固件.cn - 中国紧固件行业标准查询门户 | GB/DIN/ISO螺栓螺母尺寸对照表</title>
+<meta name="description" content="紧固件.cn是专业紧固件标准查询平台，提供GB国标、DIN德标、ISO国际标准的螺栓、螺母、垫圈、螺钉尺寸规格对照表，覆盖GB/T 5783、GB/T 5782、DIN 933、GB/T 6170等常用标准，支持标准号快速查询。">
+<meta name="keywords" content="紧固件,螺栓,螺母,垫圈,螺钉,GB/T 5783,DIN 933,紧固件标准,螺栓尺寸,螺母规格,紧固件.cn">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<div class="app">
-  <h1>📏 3D卷尺面板生成器｜完整版</h1>
-  <div class="grid">
-    <div class="left-col">
-      <div class="card">
-        <h3>📝 文字设置（右侧数字=字号）</h3>
-        <div class="form-row">
-          <label>主品牌大字</label>
-          <div class="row-flex">
-            <input id="txtMain" value="全友"/>
-            <input id="sizeMain" type="number" value="148"/>
-          </div>
-        </div>
-        <div class="form-row">
-          <label>英文/拼音副标题</label>
-          <div class="row-flex">
-            <input id="txtEn" value="Quanu"/>
-            <input id="sizeEn" type="number" value="52"/>
-          </div>
-        </div>
-        <div class="form-row">
-          <label>业务描述</label>
-          <div class="row-flex">
-            <input id="txtBiz" value="全屋定制/家具/沙发/橱柜/卫浴"/>
-            <input id="sizeBiz" type="number" value="26"/>
-          </div>
-        </div>
-        <div class="form-row">
-          <label>联系电话</label>
-          <div class="row-flex">
-            <input id="txtTel" value="电话: 1876688XXXX"/>
-            <input id="sizeTel" type="number" value="26"/>
-          </div>
-        </div>
-        <div class="form-row">
-          <label>底部规格</label>
-          <div class="row-flex">
-            <input id="txtSpec" value="10m×25mm"/>
-            <input id="sizeSpec" type="number" value="28"/>
-          </div>
-        </div>
-        <div class="form-row">
-          <label>文字颜色（支持#色值，默认#f0ece0米白）</label>
-          <input id="txtColor" value="#f0ece0"/>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>🖼️ Logo设置</h3>
-        <div class="form-row">
-          <input type="file" id="logoFile" accept="image/*">
-          <div class="logo-preview" id="logoPreviewBox">无Logo</div>
-        </div>
-        <div class="form-row">
-          <label>Logo缩放比例</label>
-          <input id="logoScale" type="number" value="0.45" step="0.05"/>
-        </div>
-        <div class="form-row">
-          <label>Logo上下偏移Y（正数下移，负数上移）</label>
-          <input id="logoYOffset" type="number" value="-120"/>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>🎨 卷尺外壳颜色</h3>
-        <div class="form-row">
-          <select id="shellColorMode">
-            <option value="darkGray">原版深灰(默认)</option>
-            <option value="black">纯黑</option>
-            <option value="blue">深蓝</option>
-            <option value="orange">橙红</option>
-            <option value="custom">自定义渐变</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="card">
-        <h3>📦 批量生成（一行一组，逗号分隔）</h3>
-        <label>格式示例：品牌,英文,业务,电话,规格</label>
-<textarea id="batchText">全友,Quanu,全屋定制/家具/沙发/橱柜/卫浴,电话:1876688XXXX,10m×25mm
-示例建材,JianCai,瓷砖/防水/门窗,电话:13800000000,7.5m×25mm</textarea>
-        <button class="btn btn-green" onclick="batchExport()">批量导出全部图片</button>
-      </div>
-
-      <button class="btn btn-primary" onclick="draw()">实时刷新预览</button>
-      <button class="btn btn-blue" onclick="downloadPNG()">导出单张PNG图片</button>
-
-      <p class="tip">💡 操作提示：<br>1. 每行文字独立字号、Logo可上下微调<br>2. 文字颜色支持十六进制色值<br>3. 外壳内置4套配色+自定义渐变<br>4. 批量框按【品牌,英文,业务,电话,规格】换行填写，一键打包导出</p>
-    </div>
-
-    <div class="preview-wrap">
-      <div class="preview-title">预览效果</div>
-      <canvas id="canvas" width="880" height="960"></canvas>
-    </div>
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>紧固件.cn - 中国紧固件行业标准查询门户</span>
+    <span><a href="#standards">标准查询</a> | <a href="#tools">规格对照</a> | <a href="#rent">广告位出租</a></span>
   </div>
 </div>
 
+<nav class="navbar">
+  <div class="navbar-inner">
+    <div class="logo">紧固件<span>.cn</span><small>中国紧固件行业标准查询门户</small></div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">首页</a></li>
+      <li><a href="#standards">标准查询</a></li>
+      <li><a href="#tools">规格对照</a></li>
+      <li><a href="#guides">选型指南</a></li>
+      <li><a href="#news">行业资讯</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>紧固件标准查询 · 一站搞定</h1>
+  <p>GB国标 / DIN德标 / ISO国际标准 · 螺栓螺母垫圈螺钉尺寸规格对照表</p>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="输入标准号快速查询，如：GB/T 5783、DIN 933、M12螺栓..." onkeydown="if(event.key==='Enter')doSearch()">
+    <button onclick="doSearch()">查询</button>
+  </div>
+  <div class="hot-tags">
+    热门搜索：
+    <a href="standards/gb-t-5783.html">GB/T 5783</a>
+    <a href="standards/din-933.html">DIN 933</a>
+    <a href="standards/gb-t-6170.html">GB/T 6170</a>
+    <a href="standards/gb-t-70-1.html">内六角螺钉</a>
+    <a href="standards/gb-t-97-1.html">平垫圈</a>
+  </div>
+</section>
+
+<div class="container">
+
+  <h2 class="section-title" id="standards">热门标准查询 <a href="#standards">更多 →</a></h2>
+  <div class="card-grid">
+    <a href="standards/gb-t-5783.html" class="std-card">
+      <div class="std-code">GB/T 5783</div>
+      <div class="std-name">六角头螺栓 全螺纹 A/B级</div>
+      <span class="std-tag">最常用螺栓</span>
+    </a>
+    <a href="standards/gb-t-5782.html" class="std-card">
+      <div class="std-code">GB/T 5782</div>
+      <div class="std-name">六角头螺栓 半螺纹 A/B级</div>
+      <span class="std-tag">半螺纹螺栓</span>
+    </a>
+    <a href="standards/din-933.html" class="std-card">
+      <div class="std-code">DIN 933</div>
+      <div class="std-name">六角头螺栓 全螺纹（德标）</div>
+      <span class="std-tag">出口常用</span>
+    </a>
+    <a href="standards/din-931.html" class="std-card">
+      <div class="std-code">DIN 931</div>
+      <div class="std-name">六角头螺栓 半螺纹（德标）</div>
+      <span class="std-tag">德标半螺纹</span>
+    </a>
+    <a href="standards/gb-t-6170.html" class="std-card">
+      <div class="std-code">GB/T 6170</div>
+      <div class="std-name">1型六角螺母 A/B级</div>
+      <span class="std-tag">最常用螺母</span>
+    </a>
+    <a href="standards/gb-t-97-1.html" class="std-card">
+      <div class="std-code">GB/T 97.1</div>
+      <div class="std-name">平垫圈 A级 标准系列</div>
+      <span class="std-tag">标准垫圈</span>
+    </a>
+    <a href="standards/gb-t-70-1.html" class="std-card">
+      <div class="std-code">GB/T 70.1</div>
+      <div class="std-name">内六角圆柱头螺钉</div>
+      <span class="std-tag">杯头螺丝</span>
+    </a>
+    <a href="standards/iso-4017.html" class="std-card">
+      <div class="std-code">ISO 4017</div>
+      <div class="std-name">六角头螺栓 全螺纹（国际标准）</div>
+      <span class="std-tag">国际贸易</span>
+    </a>
+    <a href="standards/gb-t-818.html" class="std-card">
+      <div class="std-code">GB/T 818</div>
+      <div class="std-name">十字槽盘头螺钉</div>
+      <span class="std-tag">电子常用</span>
+    </a>
+    <a href="standards/gb-t-5285.html" class="std-card">
+      <div class="std-code">GB/T 5285</div>
+      <div class="std-name">六角头自攻螺钉</div>
+      <span class="std-tag">自攻螺丝</span>
+    </a>
+  </div>
+
+  <h2 class="section-title" id="tools">实用工具入口</h2>
+  <div class="tool-grid">
+    <a href="#standards" class="tool-card">
+      <div class="icon">📐</div>
+      <div class="name">螺栓尺寸对照表</div>
+      <div class="desc">M3-M24规格速查</div>
+    </a>
+    <a href="#standards" class="tool-card">
+      <div class="icon">🔩</div>
+      <div class="name">螺母规格表</div>
+      <div class="desc">对边厚度快速查询</div>
+    </a>
+    <a href="#standards" class="tool-card">
+      <div class="icon">⚙️</div>
+      <div class="name">螺纹规格表</div>
+      <div class="desc">公制英制对照</div>
+    </a>
+    <a href="#standards" class="tool-card">
+      <div class="icon">🔧</div>
+      <div class="name">性能等级对照</div>
+      <div class="desc">8.8/10.9/12.9级</div>
+    </a>
+    <a href="#standards" class="tool-card">
+      <div class="icon">📏</div>
+      <div class="name">扳手尺寸对照</div>
+      <div class="desc">开口扳手规格</div>
+    </a>
+    <a href="#standards" class="tool-card">
+      <div class="icon">🏭</div>
+      <div class="name">材质选用指南</div>
+      <div class="desc">碳钢/不锈钢/合金钢</div>
+    </a>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <h2 class="section-title" id="news">行业资讯 <a href="#news">更多 →</a></h2>
+      <ul class="news-list">
+        <li><a href="#">2026年中国紧固件行业市场规模突破1500亿元，永年占全国产量58%</a><span class="date">09-05</span></li>
+        <li><a href="#">GB/T 5783-2016六角头螺栓标准解读：全螺纹与半螺纹如何选型</a><span class="date">09-03</span></li>
+        <li><a href="#">8.8级螺栓 vs 10.9级螺栓：性能差异与应用场景对比</a><span class="date">08-28</span></li>
+        <li><a href="#">DIN 933德标螺栓出口贸易注意事项与认证要求</a><span class="date">08-25</span></li>
+        <li><a href="#">不锈钢螺栓A2-70与A4-70的区别及选用建议</a><span class="date">08-20</span></li>
+        <li><a href="#">内六角圆柱头螺钉GB/T 70.1在模具行业的应用与选型</a><span class="date">08-15</span></li>
+        <li><a href="#">热浸镀锌螺栓在户外钢结构中的防腐性能分析</a><span class="date">08-10</span></li>
+        <li><a href="#">紧固件表面处理工艺对比：电镀锌、达克罗、发黑的优缺点</a><span class="date">08-05</span></li>
+      </ul>
+    </div>
+    <div>
+      <div class="sidebar-box">
+        <h3>标准分类导航</h3>
+        <ul>
+          <li><a href="standards/gb-t-5783.html">🔩 螺栓类（5个标准）</a></li>
+          <li><a href="standards/gb-t-6170.html">🔩 螺母类（1个标准）</a></li>
+          <li><a href="standards/gb-t-97-1.html">🔩 垫圈类（1个标准）</a></li>
+          <li><a href="standards/gb-t-70-1.html">🔩 螺钉类（3个标准）</a></li>
+          <li><a href="#standards">📋 GB国标（7个）</a></li>
+          <li><a href="#standards">📋 DIN德标（2个）</a></li>
+          <li><a href="#standards">📋 ISO国际（1个）</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-box" id="rent">
+        <h3>🏢 广告位 / 域名出租</h3>
+        <p style="font-size:13px;color:#4a5a6a;line-height:1.8;">
+          精准紧固件行业流量，适合：<br>
+          ✓ 紧固件厂家推广<br>
+          ✓ 五金建材商城引流<br>
+          ✓ 行业B2B平台合作<br>
+          ✓ 标准查询工具嵌入<br><br>
+          <strong style="color:#1a5fb4;">联系方式：微信 fastener-cn</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title" id="guides">紧固件选型指南</h2>
+  <div class="card-grid">
+    <a href="standards/gb-t-5783.html" class="std-card">
+      <div class="std-code">螺栓选型</div>
+      <div class="std-name">全螺纹 vs 半螺纹如何选择？被连接件厚度决定</div>
+    </a>
+    <a href="standards/gb-t-6170.html" class="std-card">
+      <div class="std-code">螺母选型</div>
+      <div class="std-name">1型 vs 2型螺母？螺母等级不低于螺栓等级</div>
+    </a>
+    <a href="standards/gb-t-70-1.html" class="std-card">
+      <div class="std-code">螺钉选型</div>
+      <div class="std-name">内六角 vs 十字槽？空间和拧紧力矩决定</div>
+    </a>
+    <a href="standards/gb-t-97-1.html" class="std-card">
+      <div class="std-code">垫圈选型</div>
+      <div class="std-name">平垫圈 vs 弹簧垫圈？是否需要防松决定</div>
+    </a>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>关于紧固件.cn</h4>
+      <p>专业紧固件标准查询平台，覆盖GB、DIN、ISO、ANSI、JIS五大标准体系，提供螺栓、螺母、垫圈、螺钉等紧固件的尺寸规格、性能等级、材质选用等查询服务。</p>
+      <div class="rent-box">
+        <strong>🏢 广告位 / 域名出租</strong>
+        精准行业流量，联系微信：fastener-cn
+      </div>
+    </div>
+    <div>
+      <h4>热门标准</h4>
+      <ul>
+        <li><a href="standards/gb-t-5783.html">GB/T 5783 螺栓</a></li>
+        <li><a href="standards/gb-t-5782.html">GB/T 5782 螺栓</a></li>
+        <li><a href="standards/din-933.html">DIN 933 螺栓</a></li>
+        <li><a href="standards/gb-t-6170.html">GB/T 6170 螺母</a></li>
+        <li><a href="standards/gb-t-97-1.html">GB/T 97.1 垫圈</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>实用工具</h4>
+      <ul>
+        <li><a href="#tools">螺栓尺寸对照表</a></li>
+        <li><a href="#tools">螺母规格表</a></li>
+        <li><a href="#tools">螺纹规格表</a></li>
+        <li><a href="#tools">性能等级对照</a></li>
+        <li><a href="#tools">扳手尺寸对照</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>快速链接</h4>
+      <ul>
+        <li><a href="#">返回首页</a></li>
+        <li><a href="#standards">标准查询</a></li>
+        <li><a href="#news">行业资讯</a></li>
+        <li><a href="#rent">广告合作</a></li>
+        <li><a href="sitemap.xml">网站地图</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 紧固件.cn | 本站仅供学习参考，具体尺寸请以标准原文为准 | 备案号：待备案
+  </div>
+</footer>
+
 <script>
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
-let logoImg = null;
-
-// 读取输入
-function readInputs(){
-  return {
-    main: document.getElementById("txtMain").value || "全友",
-    sizeMain: Number(document.getElementById("sizeMain").value) || 148,
-    en: document.getElementById("txtEn").value || "Quanu",
-    sizeEn: Number(document.getElementById("sizeEn").value) || 52,
-    biz: document.getElementById("txtBiz").value || "全屋定制/家具/沙发/橱柜/卫浴",
-    sizeBiz: Number(document.getElementById("sizeBiz").value) || 26,
-    tel: document.getElementById("txtTel").value || "电话: 1876688XXXX",
-    sizeTel: Number(document.getElementById("sizeTel").value) || 26,
-    spec: document.getElementById("txtSpec").value || "10m×25mm",
-    sizeSpec: Number(document.getElementById("sizeSpec").value) || 28,
-    txtColor: document.getElementById("txtColor").value || "#f0ece0",
-    logoScale: Number(document.getElementById("logoScale").value) || 0.45,
-    logoYOffset: Number(document.getElementById("logoYOffset").value) || -120,
-    shellColorMode: document.getElementById("shellColorMode").value
+function doSearch(){
+  var q = document.getElementById('searchInput').value.trim().toUpperCase();
+  if(!q){ alert('请输入标准号，如 GB/T 5783'); return; }
+  var map = {
+    'GB/T 5783':'standards/gb-t-5783.html','GB5783':'standards/gb-t-5783.html','5783':'standards/gb-t-5783.html',
+    'GB/T 5782':'standards/gb-t-5782.html','GB5782':'standards/gb-t-5782.html','5782':'standards/gb-t-5782.html',
+    'DIN 933':'standards/din-933.html','DIN933':'standards/din-933.html','933':'standards/din-933.html',
+    'DIN 931':'standards/din-931.html','DIN931':'standards/din-931.html','931':'standards/din-931.html',
+    'GB/T 6170':'standards/gb-t-6170.html','GB6170':'standards/gb-t-6170.html','6170':'standards/gb-t-6170.html',
+    'GB/T 97.1':'standards/gb-t-97-1.html','GB97.1':'standards/gb-t-97-1.html','97.1':'standards/gb-t-97-1.html',
+    'GB/T 70.1':'standards/gb-t-70-1.html','GB70.1':'standards/gb-t-70-1.html','70.1':'standards/gb-t-70-1.html',
+    'ISO 4017':'standards/iso-4017.html','ISO4017':'standards/iso-4017.html','4017':'standards/iso-4017.html',
+    'GB/T 818':'standards/gb-t-818.html','GB818':'standards/gb-t-818.html','818':'standards/gb-t-818.html',
+    'GB/T 5285':'standards/gb-t-5285.html','GB5285':'standards/gb-t-5285.html','5285':'standards/gb-t-5285.html'
   };
+  if(map[q]){ window.location.href = map[q]; }
+  else { alert('暂未收录该标准，已收录：GB/T 5783、5782、6170、97.1、70.1、818、5285、DIN 933、931、ISO 4017'); }
 }
-
-// Logo上传监听
-document.getElementById("logoFile").onchange = function(e){
-  const f = e.target.files[0];
-  if(!f) return;
-  const reader = new FileReader();
-  reader.onload = function(ev){
-    const img = new Image();
-    img.onload = function(){
-      logoImg = img;
-      const box = document.getElementById("logoPreviewBox");
-      box.innerHTML = "";
-      const mini = new Image();
-      mini.src = ev.target.result;
-      box.appendChild(mini);
-      draw();
-    }
-    img.src = ev.target.result;
-  }
-  reader.readAsDataURL(f);
-}
-
-function draw(){
-  const t = readInputs();
-  const W = canvas.width;
-  const H = canvas.height;
-  ctx.clearRect(0, 0, W, H);
-  const cx = W / 2;
-  const cy = H * 0.42;
-
-  drawGridMat(W, H);
-  drawTapeBlade(W, H);
-  const r = 360;
-  drawTapeShell(cx, cy, r, t.shellColorMode);
-  drawRightClip(cx, cy, r);
-  drawPanelText(cx, cy, r, t);
-
-  // 绘制上传Logo（顶层）
-  if(logoImg){
-    ctx.save();
-    const lw = logoImg.width * t.logoScale;
-    const lh = logoImg.height * t.logoScale;
-    ctx.drawImage(logoImg, cx - lw/2, cy + t.logoYOffset, lw, lh);
-    ctx.restore();
-  }
-}
-
-// 背景网格垫
-function drawGridMat(W, H){
-  ctx.save();
-  ctx.globalAlpha = 0.18;
-  for(let x = 0; x < W; x += 32){
-    ctx.beginPath();
-    ctx.moveTo(x, 0); ctx.lineTo(x, H);
-    ctx.strokeStyle = "#91a4b2"; ctx.lineWidth = 1; ctx.stroke();
-  }
-  for(let y = 0; y < H; y += 32){
-    ctx.beginPath();
-    ctx.moveTo(0, y); ctx.lineTo(W, y);
-    ctx.strokeStyle = "#91a4b2"; ctx.lineWidth = 1; ctx.stroke();
-  }
-  ctx.restore();
-}
-
-// 绿色尺带
-function drawTapeBlade(W, H){
-  ctx.save();
-  ctx.translate(W * 0.52, H * 0.66);
-  ctx.rotate(-0.08);
-  ctx.fillStyle = "#00c853";
-  ctx.beginPath(); ctx.roundRect(-180, 0, 360, 22, 4); ctx.fill();
-  ctx.strokeStyle = "#000"; ctx.lineWidth = 2;
-  for(let i = 0; i < 360; i += 18){
-    ctx.beginPath();
-    ctx.moveTo(-180 + i, 0);
-    ctx.lineTo(-180 + i, i % 90 === 0 ? 14 : 8);
-    ctx.stroke();
-  }
-  ctx.font = "bold 12px Arial"; ctx.fillStyle = "#000";
-  ctx.fillText("10", -175, 16);
-  ctx.fillText("20", -85, 16);
-  ctx.fillText("30", 5, 16);
-  ctx.fillText("40", 95, 16);
-  ctx.fillText("50", 185, 16);
-  ctx.restore();
-}
-
-// 卷尺外壳主体（多配色）
-function drawTapeShell(cx, cy, r, mode){
-  ctx.save();
-  ctx.beginPath(); ctx.arc(cx + 16, cy + 16, r, 0, Math.PI * 2);
-  ctx.fillStyle = "rgba(0,0,0,.35)"; ctx.fill();
-
-  let shellGrad = ctx.createRadialGradient(cx - 20, cy - 20, 10, cx, cy, r);
-  switch(mode){
-    case "black":
-      shellGrad.addColorStop(0,"#333333");
-      shellGrad.addColorStop(0.45,"#222222");
-      shellGrad.addColorStop(1,"#111111");
-      break;
-    case "blue":
-      shellGrad.addColorStop(0,"#2b3848");
-      shellGrad.addColorStop(0.45,"#1c2735");
-      shellGrad.addColorStop(1,"#101720");
-      break;
-    case "orange":
-      shellGrad.addColorStop(0,"#703822");
-      shellGrad.addColorStop(0.45,"#542918");
-      shellGrad.addColorStop(1,"#381b10");
-      break;
-    default:
-      shellGrad.addColorStop(0, "#3a3e44");
-      shellGrad.addColorStop(0.45, "#2b2f33");
-      shellGrad.addColorStop(1, "#1e2124");
-  }
-
-  ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2);
-  ctx.fillStyle = shellGrad; ctx.fill();
-  ctx.beginPath(); ctx.arc(cx, cy, r - 10, 0, Math.PI * 2);
-  ctx.strokeStyle = "rgba(255,255,255,.12)"; ctx.lineWidth = 4; ctx.stroke();
-  ctx.beginPath(); ctx.arc(cx, cy, r - 22, 0, Math.PI * 2);
-  ctx.strokeStyle = "#4c5056"; ctx.lineWidth = 3; ctx.stroke();
-  const highlight = ctx.createRadialGradient(cx, cy - r * 0.4, 10, cx, cy, r);
-  highlight.addColorStop(0, "rgba(255,255,255,.08)");
-  highlight.addColorStop(1, "rgba(255,255,255,0)");
-  ctx.fillStyle = highlight; ctx.fill();
-  ctx.restore();
-}
-
-// 右侧卡扣
-function drawRightClip(cx, cy, r){
-  ctx.save();
-  const clipX = cx + r - 24;
-  const clipY = cy - 100;
-  ctx.beginPath(); ctx.roundRect(clipX + 8, clipY + 8, 120, 180, 24);
-  ctx.fillStyle = "rgba(0,0,0,.35)"; ctx.fill();
-  const clipGrad = ctx.createLinearGradient(clipX, clipY, clipX + 120, clipY + 180);
-  clipGrad.addColorStop(0, "#b8bcbf");
-  clipGrad.addColorStop(0.5, "#dfe3e6");
-  clipGrad.addColorStop(1, "#9ca0a3");
-  ctx.beginPath(); ctx.roundRect(clipX, clipY, 120, 180, 24);
-  ctx.fillStyle = clipGrad; ctx.fill();
-  ctx.beginPath(); ctx.roundRect(clipX + 12, clipY + 12, 96, 156, 18);
-  ctx.strokeStyle = "rgba(0,0,0,.25)"; ctx.lineWidth = 2; ctx.stroke();
-  ctx.restore();
-}
-
-// 绘制面板文字（独立字号+自定义颜色）
-function drawPanelText(cx, cy, r, t){
-  ctx.save();
-  ctx.fillStyle = t.txtColor;
-  ctx.textAlign = "center";
-  ctx.font = `bold ${t.sizeMain}px "Microsoft YaHei", "PingFang SC", sans-serif`;
-  ctx.fillText(t.main, cx, cy - 70);
-  ctx.font = `${t.sizeEn}px "Microsoft YaHei", sans-serif`;
-  ctx.fillText(t.en, cx, cy + 18);
-  ctx.font = `${t.sizeBiz}px "Microsoft YaHei", sans-serif`;
-  ctx.fillText(t.biz, cx, cy + 72);
-  ctx.font = `${t.sizeTel}px "Microsoft YaHei", sans-serif`;
-  ctx.fillText(t.tel, cx, cy + 112);
-  const specW = 200;
-  const specH = 64;
-  const specX = cx - specW / 2;
-  const specY = cy + 145;
-  ctx.beginPath(); ctx.roundRect(specX, specY, specW, specH, 14);
-  ctx.strokeStyle = t.txtColor; ctx.lineWidth = 3; ctx.stroke();
-  ctx.font = `${t.sizeSpec}px "Microsoft YaHei", sans-serif`;
-  ctx.fillText(t.spec, cx, specY + 40);
-  ctx.restore();
-}
-
-// 单张导出
-function downloadPNG(){
-  const link = document.createElement("a");
-  link.download = "卷尺效果图.png";
-  link.href = canvas.toDataURL("image/png");
-  link.click();
-}
-
-// 批量生成
-async function batchExport(){
-  const lines = document.getElementById("batchText").value.trim().split("\n");
-  const base = readInputs();
-  for(let line of lines){
-    if(!line.trim()) continue;
-    const arr = line.split(",");
-    if(arr.length<5)continue;
-    // 临时替换文字渲染
-    document.getElementById("txtMain").value = arr[0].trim();
-    document.getElementById("txtEn").value = arr[1].trim();
-    document.getElementById("txtBiz").value = arr[2].trim();
-    document.getElementById("txtTel").value = arr[3].trim();
-    document.getElementById("txtSpec").value = arr[4].trim();
-    draw();
-    await new Promise(s=>setTimeout(s,200));
-    const a = document.createElement("a");
-    a.download = `卷尺_${arr[0].trim()}.png`;
-    a.href = canvas.toDataURL("image/png");
-    a.click();
-  }
-  // 恢复回表单原有内容
-  document.getElementById("txtMain").value = base.main;
-  document.getElementById("txtEn").value = base.en;
-  document.getElementById("txtBiz").value = base.biz;
-  document.getElementById("txtTel").value = base.tel;
-  document.getElementById("txtSpec").value = base.spec;
-  draw();
-}
-
-draw();
-// 输入框实时刷新
-document.querySelectorAll("input, select, textarea").forEach(input=>{
-  input.addEventListener("input",draw);
-})
 </script>
 </body>
 </html>
