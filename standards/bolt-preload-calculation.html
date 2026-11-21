@@ -1,0 +1,161 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>螺栓预紧力怎么算：公式、K系数与扭矩对照 | 紧固件.cn</title>
+<meta name="description" content="螺栓预紧力怎么算？用 F=75%×Sp×As 与 T=K·F·d 两步计算，附M8~M36预紧力和扭矩对照表、K系数取值、70%/75%/90%选择及现场拧紧要点。">
+<meta name="keywords" content="螺栓预紧力,预紧力计算公式,扭矩系数,螺栓扭矩,8.8级螺栓,10.9级螺栓,拧紧扭矩,预紧力对照表">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="topbar"><div class="topbar-inner"><span>紧固件.cn - 专业紧固件标准查询平台</span><span><a href="../index.html">返回首页</a> | <a href="#">广告位出租</a></span></div></div>
+<nav class="navbar"><div class="navbar-inner">
+  <div class="logo">紧固件<span>.cn</span><small>中国紧固件行业标准查询门户</small></div>
+  <ul class="nav-links">
+    <li><a href="../index.html">首页</a></li>
+    <li><a href="../index.html#standards">标准查询</a></li>
+    <li><a href="../index.html#tools">规格对照</a></li>
+    <li><a href="../index.html#guides" class="active">选型指南</a></li>
+    <li><a href="../index.html#news">行业资讯</a></li>
+  </ul>
+</div></nav>
+<div class="container">
+<div class="std-detail">
+  <div class="breadcrumb"><a href="../index.html">首页</a> / <a href="../index.html#guides">选型指南</a> / 螺栓预紧力</div>
+  <h1>螺栓预紧力怎么算：公式、扭矩系数与拧紧控制</h1>
+  <div class="std-subtitle">Bolt Preload — Formula, Nut Factor and Tightening Control</div>
+  <div class="std-meta">
+    <div class="std-meta-item"><strong>核心公式：</strong>F = p × Sp × As / T = K × F × d</div>
+    <div class="std-meta-item"><strong>覆盖规格：</strong>M8～M36 粗牙螺栓</div>
+    <div class="std-meta-item"><strong>适用等级：</strong>8.8 / 10.9 / 12.9</div>
+  </div>
+
+  <h2>一、先分清预紧力、夹紧力与扭矩</h2>
+  <p>螺栓预紧力怎么算，直接决定连接会不会松动、螺栓会不会被拧断。工程上常用两步：先按保证载荷的一定比例算出目标预紧力，再用 T＝K·F·d 换算拧紧扭矩。预紧力是螺栓被拉长后产生的轴向拉力，夹紧力是被连接件被压紧的力；在弹性阶段两者近似相等，但垫片压缩、接触面嵌入和蠕变会让夹紧力逐渐下降。</p>
+  <p>扭矩只是拧紧手段，不等于预紧力。拧紧时大约 80%～90% 的扭矩被螺纹摩擦和支承面摩擦消耗，只有很小一部分转化为螺栓伸长。所以同样 100 N·m，干态、涂油、镀锌件得到的预紧力可能相差三成以上。</p>
+  <ul>
+    <li><strong>预紧力 F</strong>：设计要控制的螺栓轴向拉力，单位 N 或 kN。</li>
+    <li><strong>夹紧力</strong>：真正压住被连接件的力，通常略低于预紧力。</li>
+    <li><strong>拧紧扭矩 T</strong>：扳手施加的旋转力矩，单位 N·m。</li>
+    <li><strong>扭矩系数 K</strong>：把摩擦、螺纹升角和支承面条件合并成一个无量纲系数。</li>
+  </ul>
+
+  <h2>二、预紧力计算公式：两步算完</h2>
+  <p><strong>第一步，算目标预紧力：F = p × Sp × As。</strong>其中 p 是保证载荷利用比例，常用 0.70～0.75；Sp 是螺栓保证应力（MPa）；As 是螺纹公称应力截面积（mm²），不是按外径算的圆面积。粗牙 As 可按下式估算，精确值查 GB/T 16823.1 或 ISO 898-1 表。</p>
+  <p><strong>As = π/4 × (d − 0.9382 × P)²</strong>，d 为公称直径，P 为螺距，单位均为 mm。以 M12×1.75 为例，As≈84.3 mm²，而不是 113 mm²。</p>
+  <p><strong>第二步，换算拧紧扭矩：T = K × F × d。</strong>F 用 N，d 用 m，得到 N·m；若 d 用 mm，则 T(N·m)=K×F×d/1000。以 10.9 级 M12、75% 保证载荷为例：F=0.75×830×84.3≈52 477 N≈52.5 kN；取 K=0.13，T=0.13×52 477×12/1000≈82 N·m；若干态 K=0.20，同样预紧力需要约 126 N·m。</p>
+  <p>这就是“同一个螺栓、同一本扭矩表，现场却拧出不同结果”的主要原因。扭矩表如果不注明 K 值和润滑状态，只能当参考，不能直接当工艺参数。</p>
+
+  <h2>三、M8～M36 预紧力与扭矩对照</h2>
+  <p>下表按粗牙螺纹、75% 保证载荷计算。8.8 级在 M16 及以下取 Sp=580 MPa，M16 以上取 600 MPa；10.9 级取 Sp=830 MPa。扭矩分别按 K=0.13（含蜡、二硫化钼等低摩擦状态）和 K=0.20（干态）估算。</p>
+  <table class="size-table">
+    <thead><tr><th>规格</th><th>螺距 P (mm)</th><th>As (mm²)</th><th>8.8 级 75% 预紧力</th><th>10.9 级 75% 预紧力</th><th>10.9 级 K=0.13 扭矩</th><th>10.9 级 K=0.20 扭矩</th></tr></thead>
+    <tbody>
+      <tr><td>M8</td><td>1.25</td><td>36.6</td><td>15.9 kN</td><td>22.8 kN</td><td>24 N·m</td><td>36 N·m</td></tr>
+      <tr><td>M10</td><td>1.5</td><td>58.0</td><td>25.2 kN</td><td>36.1 kN</td><td>47 N·m</td><td>72 N·m</td></tr>
+      <tr><td>M12</td><td>1.75</td><td>84.3</td><td>36.7 kN</td><td>52.5 kN</td><td>82 N·m</td><td>126 N·m</td></tr>
+      <tr><td>M16</td><td>2.0</td><td>157</td><td>68.3 kN</td><td>97.7 kN</td><td>203 N·m</td><td>313 N·m</td></tr>
+      <tr><td>M20</td><td>2.5</td><td>245</td><td>110.2 kN</td><td>152.5 kN</td><td>397 N·m</td><td>610 N·m</td></tr>
+      <tr><td>M24</td><td>3.0</td><td>353</td><td>158.8 kN</td><td>219.7 kN</td><td>686 N·m</td><td>1 055 N·m</td></tr>
+      <tr><td>M30</td><td>3.5</td><td>561</td><td>252.4 kN</td><td>349.2 kN</td><td>1 362 N·m</td><td>2 095 N·m</td></tr>
+      <tr><td>M36</td><td>4.0</td><td>817</td><td>367.6 kN</td><td>508.6 kN</td><td>2 380 N·m</td><td>3 662 N·m</td></tr>
+    </tbody>
+  </table>
+  <p>表中数值是理论估算，不是装配扭矩表。细牙螺纹 As 更小，相同等级下预紧力更低；热镀锌、锌铝涂层、二硫化钼润滑都会改变 K。批量装配前应按连接副实测扭矩系数，或直接采用设计文件给定的预紧力和扭矩。</p>
+
+  <h2>四、扭矩系数 K 怎么取</h2>
+  <p>K 不是摩擦系数，而是螺纹摩擦、支承面摩擦和螺纹升角的综合结果。表面粗糙度、镀层、润滑剂、垫圈硬度、螺纹精度都会影响它。选型阶段可以用下表起步，正式工艺必须用扭矩-拉力试验机实测。</p>
+  <table class="size-table">
+    <thead><tr><th>表面/润滑状态</th><th>K 参考值</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td>干态、无油碳钢</td><td>约 0.20</td><td>普通机械连接最常见的默认值</td></tr>
+      <tr><td>轻微涂油</td><td>约 0.17</td><td>防锈油、薄层机油，离散度仍较大</td></tr>
+      <tr><td>含蜡、二硫化钼、PTFE</td><td>约 0.12～0.15</td><td>低摩擦，常用于高强螺栓和风电连接副</td></tr>
+      <tr><td>电镀锌</td><td>约 0.22</td><td>镀层改变支承面摩擦，不能套用干态值</td></tr>
+      <tr><td>热浸镀锌</td><td>约 0.25</td><td>镀层厚、表面粗糙，散差更大</td></tr>
+    </tbody>
+  </table>
+  <p>同一批连接副的 K 值应控制变异系数；K 每偏 0.01，预紧力约偏 5%～8%。关键连接建议按批抽检，并记录润滑剂牌号、涂覆位置和试验温度。<a href="https://crafter.fastenal.com/static-assets/pdfs/Torque-Tension_Relationship_for_Metric_Fasteners_Property_Class_4.6,_8.8,_10.9,_12.9.pdf" target="_blank" rel="nofollow noopener">Fastenal 扭矩-预紧力资料</a>也给出类似口径：干态约 0.20、润滑约 0.15、特殊涂层约 0.13。</p>
+
+  <h2>五、70%、75%、90% 该怎么选</h2>
+  <p>预紧力比例不是越高越好。比例越高，螺栓越接近屈服，扭矩散差、嵌入损失和应力松弛造成的风险越大。工程上通常按连接的重要性和拧紧方法来定。</p>
+  <table class="size-table">
+    <thead><tr><th>比例</th><th>适用场景</th><th>注意点</th></tr></thead>
+    <tbody>
+      <tr><td>70%</td><td>被连接件较软（铝、薄板、复合材料）、冲击或疲劳载荷、扭矩法施工</td><td>留出散差余量，防止局部压溃</td></tr>
+      <tr><td>75%</td><td>通用机械、设备安装、钢结构次梁与附件</td><td>最常用的折中值，需校准扳手</td></tr>
+      <tr><td>90%</td><td>永久连接、少拆卸、液压拉伸或扭矩-转角控制</td><td>必须控制 K 和屈服，不建议用普通扭矩法</td></tr>
+      <tr><td>100%</td><td>不推荐</td><td>摩擦散差和工具误差很容易导致超拧</td></tr>
+    </tbody>
+  </table>
+  <p>还有两个常被忽略的损失：一是接触面嵌入，新加工面在第一次拧紧后会被压平，预紧力下降；二是垫片、塑料件和涂层的蠕变。对密封或疲劳关键连接，设计时要把这些损失计入初始预紧力，不能只按公式算完就结束。</p>
+
+  <h2>六、扭矩法、扭矩-转角法与液压拉伸</h2>
+  <p>预紧力控制方法不同，精度和适用规格也不同。不要拿扭矩法的表去套液压拉伸，也不要把扭矩-转角法当成“多拧半圈”。</p>
+  <ul>
+    <li><strong>扭矩法</strong>：用校准扭矩扳手拧到目标扭矩，设备简单、适用面广；预紧力散差通常约 ±15%～±25%，适合一般连接。</li>
+    <li><strong>扭矩-转角法</strong>：先拧到贴合扭矩，再转过规定角度，让螺栓进入塑性或接近屈服区；受摩擦影响较小，但需要工艺试验和转角控制，多用于高强螺栓。</li>
+    <li><strong>液压拉伸法</strong>：用拉伸器直接拉长螺栓，再旋紧螺母；预紧力精度可到 ±5% 左右，适合 M30 以上、空间允许的大规格连接。</li>
+    <li><strong>直接测量</strong>：超声波螺栓应力仪、应变片或压力传感器可实测预紧力，用于关键设备验收和失效分析。</li>
+  </ul>
+  <p>风电、压力容器、桥梁等关键连接，通常由设计方指定预紧力、拧紧方法和验收比例。紧固件供应商提供的是连接副和扭矩系数，不替代连接设计。</p>
+
+  <h2>七、现场拧紧控制的 7 个要点</h2>
+  <p>公式算得再准，现场控制不到位也会前功尽弃。下面七项是最容易出问题的环节。</p>
+  <table class="size-table">
+    <thead><tr><th>控制点</th><th>要求</th><th>常见问题</th></tr></thead>
+    <tbody>
+      <tr><td>扳手校准</td><td>按周期校准，使用前复核；液压扳手查压力-扭矩曲线</td><td>长期不校准，实际扭矩偏高或偏低</td></tr>
+      <tr><td>摩擦状态一致</td><td>同一连接副使用同一种润滑剂，涂覆位置和用量固定</td><td>有的涂油、有的干装，K 值不一致</td></tr>
+      <tr><td>垫圈与支承面</td><td>支承面平整、无油漆、无毛刺；按图纸放平垫或厚垫</td><td>垫圈漏装、支承面倾斜，预紧力损失</td></tr>
+      <tr><td>螺纹啮合长度</td><td>拧紧后螺杆伸出螺母 2～3 个螺距，螺纹完整啮合</td><td>螺纹太短，螺母只咬住几牙</td></tr>
+      <tr><td>拧紧顺序</td><td>对角、十字、对称，分 2～3 次到目标值</td><td>一次拧死，法兰或垫片受力不均</td></tr>
+      <tr><td>温度与时效</td><td>按设计要求的温度施工；必要时在规定时间后复紧</td><td>高温或低温下 K 值偏移，未复紧</td></tr>
+      <tr><td>记录与追溯</td><td>记录批次、K 值、扭矩、扳手编号和操作者</td><td>出问题无法定位批次</td></tr>
+    </tbody>
+  </table>
+  <p>多螺栓法兰建议分三轮：第一轮 50% 目标扭矩，第二轮 80%，第三轮 100%，每轮都按对角顺序。拆卸后重复使用的螺栓要检查螺纹、伸长和标记；扭矩-转角法拧过的螺栓通常不建议重复使用。</p>
+
+  <h2>八、常见误区</h2>
+  <table class="size-table">
+    <thead><tr><th>误区</th><th>后果</th><th>正确做法</th></tr></thead>
+    <tbody>
+      <tr><td>扭矩等于预紧力</td><td>只看扭矩表，不知道实际夹紧力</td><td>用 F= p×Sp×As 先算预紧力，再反算扭矩</td></tr>
+      <tr><td>扭矩越大越牢</td><td>螺栓屈服、螺纹滑牙、法兰面压溃</td><td>按设计预紧力，控制上限</td></tr>
+      <tr><td>换润滑剂不重标 K</td><td>预紧力偏高或偏低，甚至超拧</td><td>每批连接副实测扭矩系数</td></tr>
+      <tr><td>用冲击扳手凭手感</td><td>扭矩不可控，散差极大</td><td>用校准扭矩扳手或液压扳手</td></tr>
+      <tr><td>忽略嵌入损失</td><td>装配后预紧力下降，连接松动</td><td>按设计复紧或提高初始预紧力</td></tr>
+      <tr><td>12.9 级随便用</td><td>氢脆、延迟断裂风险</td><td>确认工况与去氢工艺，必要时降级</td></tr>
+    </tbody>
+  </table>
+
+  <h2>九、相关标准与延伸阅读</h2>
+  <p>预紧力计算依赖螺纹应力截面积和保证应力，施工验收还要看连接副标准。以下页面可继续查阅。</p>
+  <div class="related-std">
+    <a href="gb-t-3098-1.html">GB/T 3098.1 螺栓机械性能</a>
+    <a href="bolt-torque-guide.html">螺栓扭矩怎么算</a>
+    <a href="bolt-grade-guide.html">螺栓强度等级怎么选</a>
+    <a href="high-strength-bolt-installation-guide.html">高强度螺栓初拧与终拧</a>
+    <a href="thread-tolerance-guide.html">螺纹公差与配合</a>
+    <a href="fastener-material-guide.html">紧固件材料选择</a>
+  </div>
+  <p>参考标准：GB/T 3098.1、GB/T 16823.1、GB/T 1231、ISO 898-1、VDI 2230。具体预紧力、扭矩和验收比例以设计文件及现行标准为准。</p>
+</div>
+</div>
+<footer class="footer"><div class="footer-inner">
+  <div><h4>关于紧固件.cn</h4><p>专业紧固件标准查询平台。</p>
+    <div class="rent-box"><strong>🏢 广告位 / 域名出租</strong>联系微信：mfujun</div></div>
+  <div><h4>热门内容</h4><ul>
+    <li><a href="bolt-preload-calculation.html">螺栓预紧力计算</a></li>
+    <li><a href="wind-power-fastener-guide.html">风电紧固件选型</a></li>
+  </ul></div>
+  <div><h4>实用工具</h4><ul>
+    <li><a href="../index.html#tools">尺寸对照表</a></li>
+  </ul></div>
+  <div><h4>快速链接</h4><ul>
+    <li><a href="../index.html">返回首页</a></li>
+  </ul></div>
+</div><div class="footer-bottom">© 2026 紧固件.cn | 本站仅供学习参考</div></footer>
+</body>
+</html>
